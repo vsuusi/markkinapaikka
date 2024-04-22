@@ -10,12 +10,13 @@ async function queryDatabase() {
   });
 
   try {
-    const [results, fields] = await connection.query(
-      'SELECT * FROM `items`',
-    );
-
-    console.log(results); // results contains rows returned by server
-    console.log(fields); // fields contains extra meta data about results, if available
+    const newItem = {
+      user_id: 1,
+      title: 'Toyota Yaris',
+      price: 1099.1,
+    };
+    const [results] = await connection.query('INSERT INTO `items` SET ?', [newItem]);
+    console.log(results);
   } catch (err) {
     console.log(err);
   }
