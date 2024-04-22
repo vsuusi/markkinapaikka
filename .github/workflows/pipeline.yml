@@ -8,9 +8,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # contains a job called "build"
-  build:
-    # The type of runner that the job will run on
+  verification:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -23,3 +21,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
             node-version: "18"
+
+        # install deps
+        # run linter
+        # run tests
+        # run build
+        # start sql
+        # on server and client
