@@ -1,3 +1,10 @@
+### ---- ITEMS ----
+### get all items
+GET http://localhost:3000/api/items HTTP/1.1
+
+### get item by id
+GET http://localhost:3000/api/items/4 HTTP/1.1
+
 ### post new item
 POST http://localhost:3000/api/items HTTP/1.1
 content-type: application/json
@@ -25,11 +32,41 @@ content-type: application/json
     "image_url": "urlkuvaan;D"
 }
 
-### delete by id
+### delete item by id
 DELETE  http://localhost:3000/api/items/3 HTTP/1.1
 
-### get all
-GET http://localhost:3000/api/items HTTP/1.1
 
-### get by id
-GET http://localhost:3000/api/items/4 HTTP/1.1
+### ---- USERS ----
+
+### get user by id
+GET http://localhost:3000/api/users/1 HTTP/1.1
+
+### post new item
+POST http://localhost:3000/api/users HTTP/1.1
+content-type: application/json
+
+{
+    "user_id": 1,
+    "title": "Jäkki",
+    "description": "Priima istuttava jakkara",
+    "price": 99,
+    "category": "Kalusteet",
+    "location": "Pirkanmaa",
+    "image_url": "asdsadasdasd"
+}
+
+### update item
+PUT http://localhost:3000/api/users/2 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Moottorisaha Stihl",
+    "description": "Uudenveroinen",
+    "price": 59.50,
+    "category": "Työkalut",
+    "location": "Pirkanmaa",
+    "image_url": "urlkuvaan;D"
+}
+
+### delete item by id
+DELETE  http://localhost:3000/api/users/2 HTTP/1.1
