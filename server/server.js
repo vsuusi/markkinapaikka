@@ -12,8 +12,10 @@ const logMiddleware = (req, res, next) => {
   next();
 };
 */
+app.use(express.json());
 
 app.use('/api/items', items);
+app.use('/api/users', items);
 
 app.get('/health', (req, res) => {
   res.status(200).send('Health check Ok!');
