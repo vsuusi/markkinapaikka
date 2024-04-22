@@ -4,6 +4,9 @@ server/node_modules
 # client
 client/node_modules
 
+# word doc
+*.docx
+
 # Logs
 logs
 *.log
