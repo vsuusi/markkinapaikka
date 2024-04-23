@@ -30,7 +30,6 @@ const items = {
       const connection = await pool.getConnection();
       const [results] = await connection.query(insertQuery, [item]);
       connection.release();
-      console.log(results);
       return results;
     } catch (error) {
       throw new Error(error);
@@ -42,7 +41,6 @@ const items = {
       const connection = await pool.getConnection();
       const [results] = await connection.query(updateQuery, [item, itemId]);
       connection.release();
-      console.log(results);
       return results;
     } catch (error) {
       throw new Error(error);
@@ -54,7 +52,6 @@ const items = {
       const connection = await pool.getConnection();
       const [results] = await connection.query(deleteQuery, [id]);
       connection.release();
-      console.log(results);
       return results;
     } catch (error) {
       throw new Error(error);
