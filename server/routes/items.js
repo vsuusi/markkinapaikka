@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import verifyToken from '../middleware/verifyToken.js';
 import {
   getItems,
   getItemById,
@@ -11,6 +12,7 @@ const router = Router();
 
 router.get('/', getItems);
 router.get('/:id', getItemById);
+router.use(verifyToken); // only routes below these are affected
 router.post('/', createItem);
 router.put('/:id', updateItem);
 router.delete('/:id', deleteItem);

@@ -1,13 +1,9 @@
 import { Router } from 'express';
+import { signUpUser, loginUser } from '../controllers/users.js';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  res.send(['Yksi', 'kaksi', 'Kolme']);
-});
-
-router.get('/:id', (req, res) => {
-  res.send(req.query);
-});
+router.post('/signup', signUpUser);
+router.post('/login', loginUser);
 
 export default router;

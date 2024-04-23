@@ -16,15 +16,13 @@ USE `markkinapaikka_db` ;
 CREATE TABLE IF NOT EXISTS `markkinapaikka_db`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `fname` VARCHAR(45) NOT NULL,
-  `lname` VARCHAR(45) NOT NULL,
-  `phone` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `phone` VARCHAR(45) NULL,
   `prefered_contact` VARCHAR(45) NULL,
   `date_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `date_modified` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -76,9 +74,9 @@ ENGINE = InnoDB;
 
 
 -- Sample data for users table
-INSERT INTO `markkinapaikka_db`.`users` (`email`, `password`, `fname`, `lname`, `phone`, `prefered_contact`) VALUES
-('john@example.com', 'password123', 'John', 'Doe', '+123456789', 'email'),
-('jane@example.com', 'securepass', 'Jane', 'Smith', '+987654321', 'phone');
+INSERT INTO `markkinapaikka_db`.`users` (`email`, `password`, `name`, `phone`, `prefered_contact`) VALUES
+('john@example.com', 'password123', 'John Doe', '+123456789', 'email'),
+('jane@example.com', 'securepass', 'Jane Smith', '+987654321', 'phone');
 
 -- Sample data for items table
 INSERT INTO `markkinapaikka_db`.`items` (`user_id`, `title`, `description`, `price`, `category`, `location`, `image_url`) VALUES
