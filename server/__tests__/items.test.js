@@ -1,7 +1,7 @@
 import {
   test, describe, expect, beforeAll,
 } from '@jest/globals';
-import request, { supertest } from 'supertest';
+import request from 'supertest';
 import app from '../app';
 import pool from '../db/pool';
 
@@ -21,7 +21,7 @@ beforeAll(async () => {
     password: 'testpass',
   };
 
-  const response = await supertest(app)
+  const response = await request(app)
     .post('/api/users/signup')
     .set('Accept', 'application/json')
     .send(data);
