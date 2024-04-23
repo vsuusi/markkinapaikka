@@ -63,7 +63,7 @@ content-type: application/json
 
 {
     "email": "23sd@fi",
-    "password": "123"
+    "password": "1234"
 }
 
 ###
