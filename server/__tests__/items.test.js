@@ -1,8 +1,34 @@
-import { test, describe, expect } from '@jest/globals';
-import request from 'supertest';
+import {
+  test, describe, expect, beforeAll,
+} from '@jest/globals';
+import request, { supertest } from 'supertest';
 import app from '../app';
+import pool from '../db/pool';
 
 let testId;
+const loggedInUser = {
+  id: '',
+  email: '',
+  token: '',
+};
+
+beforeAll(async () => {
+  pool.query('DELETE FROM users WHERE email=?', ['test.user@example.com']);
+
+  const data = {
+    name: 'Test User',
+    email: 'test.user@example.com',
+    password: 'testpass',
+  };
+
+  const response = await supertest(app)
+    .post('/api/users/signup')
+    .set('Accept', 'application/json')
+    .send(data);
+  loggedInUser.userId = response.body.userId;
+  loggedInUser.email = response.body.email;
+  loggedInUser.token = response.body.token;
+});
 
 describe('GET operations', () => {
   test('all items should return 200', (done) => {
@@ -52,6 +78,9 @@ describe('POST operations', () => {
     };
     request(app)
       .post('/api/items')
+      .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${loggedInUser.token}`)
+      .set('Content', 'application/json')
       .send(newItem)
       .expect(200)
       .end((err, res) => {
@@ -76,7 +105,7 @@ describe('POST operations', () => {
 
 // PUT OPERATIONS
 describe('PUT operations', () => {
-  test('should update item with valid data', (done) => {
+  test('valid item update', (done) => {
     const updatedData = {
       user_id: 1,
       title: 'PäivitettyTavara',
@@ -88,6 +117,9 @@ describe('PUT operations', () => {
     };
     request(app)
       .put(`/api/items/${testId}`)
+      .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${loggedInUser.token}`)
+      .set('Content', 'application/json')
       .send(updatedData)
       .expect(200)
       .end((err, res) => {
@@ -113,6 +145,9 @@ describe('DELETE operations', () => {
   test('valid deletion of item ( deletes item that was posted on test )', (done) => {
     request(app)
       .delete(`/api/items/${testId}`)
+      .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${loggedInUser.token}`)
+      .set('Content', 'application/json')
       .expect(200)
       .end((err) => {
         if (err) return done(err);
@@ -122,6 +157,9 @@ describe('DELETE operations', () => {
   test('should return 404 for item not found', (done) => {
     request(app)
       .delete('/api/items/3')
+      .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${loggedInUser.token}`)
+      .set('Content', 'application/json')
       .expect(404)
       .end((err) => {
         if (err) return done(err);
