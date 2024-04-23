@@ -19,6 +19,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
             node-version: "18"
+          
+      - name: install server deps
+        working-directory: ./server
+        run: npm ci
+
+      - name: run tests on server
+        working-directory: ./server
+        run: npm run test
+
+      - name: run linter on server
+        working-directory: ./server
+        run: npm run lint
 
         # install deps
         # run linter
