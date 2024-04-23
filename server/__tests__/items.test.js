@@ -1,19 +1,20 @@
 import {
-  test, describe, expect, beforeAll,
+  test, describe, expect, beforeEach,
 } from '@jest/globals';
 import request from 'supertest';
 import app from '../app';
 import pool from '../db/pool';
 
 let testId;
+
 const loggedInUser = {
   id: '',
   email: '',
   token: '',
 };
 
-beforeAll(async () => {
-  pool.query('DELETE FROM users WHERE email=?', ['test.user@example.com']);
+beforeEach(async () => {
+  await pool.query('DELETE FROM users WHERE email=?', ['test.user@example.com']);
 
   const data = {
     name: 'Test User',
