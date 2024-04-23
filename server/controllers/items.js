@@ -54,7 +54,7 @@ const deleteItem = async (req, res) => {
   if (response.affectedRows !== 0) {
     res.json({ message: 'Item deleted' });
   } else {
-    res.json({ message: 'Item does not exist' });
+    res.status(404).json({ message: 'Item does not exist' });
   }
 };
 
