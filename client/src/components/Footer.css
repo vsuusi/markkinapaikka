@@ -1,0 +1,12 @@
+.footer-container {
+    height: 250px;
+    display: flex;
+    justify-content: space-around;
+    border-top: .1em solid black;
+}
+
+.footer-items {
+    display: flex;
+    align-items: center;
+    gap: 5vw;
+}
