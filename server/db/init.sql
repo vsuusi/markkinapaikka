@@ -80,8 +80,11 @@ INSERT INTO `markkinapaikka_db`.`users` (`email`, `password`, `name`, `phone`, `
 
 -- Sample data for items table
 INSERT INTO `markkinapaikka_db`.`items` (`user_id`, `title`, `description`, `price`, `category`, `location`, `image_url`) VALUES
-(1, 'Bicycle', 'Gently used bicycle in good condition', 150.00, 'Sports & Outdoors', 'New York', 'https://example.com/bicycle.jpg'),
-(2, 'Smartphone', 'Brand new smartphone with latest features', 600.00, 'Electronics', 'Los Angeles', 'https://example.com/smartphone.jpg');
+(1, 'Pyörä', 'Mummon vanha pyörä, keulii kaasusta', 79, 'Urheilu', 'Kemi', 'https://www.etlehti.fi/s3fs-public/user_media/156.jpg'),
+(1, 'Toyta Yaris', 'Punainen paholainen, urheileauto sporttikorilla ja kahdella ovella', 599.99, 'Autot', 'Haukipudas', 'https://images.nettiauto.com/live/2023/01/03/bda342dbe11f9f2e-large.jpg'),
+(2, 'Huulirasva (vähän käytetty)', 'Hyvässä kunnossa nokian huulirasva', 1.99, 'Muut', 'Hatanpää', 'https://example.com/huulari.jpg'),
+(1, 'Heittokuutio koivuklapeja', 'jep', 30, 'Muut', 'Ylivieska', 'https://example.com/klapeja.jpg'),
+(2, 'Iphone 12 mini', 'uudenveroinen iphone 12', 600.00, 'Elektroniikka', 'Tampere', 'https://example.com/iphone.jpg');
 
 -- Sample data for favorites table
 INSERT INTO `markkinapaikka_db`.`favorites` (`users_id`, `items_id`) VALUES
