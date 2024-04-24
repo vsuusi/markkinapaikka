@@ -1,11 +1,11 @@
 import mysql from 'mysql2/promise';
 
 const pool = mysql.createPool({
-  host: 'localhost',
+  host: 'db',
   user: 'root',
   password: 'markkinapaikka_password',
   database: 'markkinapaikka_db',
-  connectionLimit: 10,
+  port: 3306,
 });
 
 export default pool;
