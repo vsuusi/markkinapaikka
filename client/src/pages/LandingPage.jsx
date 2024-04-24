@@ -1,6 +1,12 @@
+import Listings from '../components/Listings.jsx';
+import Footer from '../components/Footer.jsx';
+
 function LandingPage() {
   return (
-    <h1>LandingPage :)</h1>
+    <>
+      <Listings />
+      <Footer />
+    </>
   );
 }
 

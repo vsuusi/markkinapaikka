@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage';
 import UserPage from './pages/UserPage';
 import ErrorPage from './pages/ErrorPage';
 import Rootlayout from './pages/Rootlayout';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -16,6 +17,7 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         { path: '/', element: <LandingPage /> },
+        { path: '/login', element: <LoginPage /> },
         { path: '/user', element: <UserPage /> },
         { path: '/new', element: <NewListingPage /> },
       ],
