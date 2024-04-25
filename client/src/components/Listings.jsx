@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import './Listings.css';
 
 import SearchBar from './SearchBar';
+import ListingModal from './ListingModal';
 
 import { getItems } from '../../api/items';
 
 function Listings() {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState(items);
+  const [selectedItemId, setSelectedItemId] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +31,10 @@ function Listings() {
       setFilteredItems(filtered);
   };
 
+  const handleItemClick = (itemId) => {
+    setSelectedItemId(itemId);
+  };
+
   return (
     <>
     <SearchBar onSearch={handleSearch}/>
@@ -38,7 +44,7 @@ function Listings() {
         ) : (
       <ul className="listing-list">
         {filteredItems.map((item) => (
-          <div className="list-item" key={item.id}>
+          <div className="list-item" key={item.id} onClick={() => handleItemClick(item.id)}>
             <div className="list-img">
               <img src={item.image_url} alt="kuvan lataus epäonnistui" />
               <div className="list-price">
@@ -52,6 +58,7 @@ function Listings() {
       </ul>
         )}
     </div>
+    {selectedItemId && <ListingModal item={items.find((i) => i.id === selectedItemId)} onClose={() => setSelectedItemId(null)} />}
     </>
   );
 }
