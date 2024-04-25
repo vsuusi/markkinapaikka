@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import './Listings.css';
 
+import SearchBar from './SearchBar';
+
 import { getItems } from '../../api/items';
 
 function Listings() {
@@ -19,20 +21,25 @@ function Listings() {
   }, []);
 
   return (
+    <>
+    <SearchBar />
     <div className="listing-container">
       <ul className="listing-list">
         {items.map((item) => (
           <div className="list-item" key={item.id}>
-            <img src={item.image_url} alt="kuvan lataus epäonnistui" />
+            <div className="list-img">
+              <img src={item.image_url} alt="kuvan lataus epäonnistui" />
+              <div className="list-price">
+                <p>{item.price} €</p>
+              </div>
+            </div>
             <h2>{item.title}</h2>
-            <p>{item.description}</p>
-            <p>{item.price}</p>
             <p>{item.location}</p>
-            <p>{item.category}</p>
           </div>
         ))}
       </ul>
     </div>
+    </>
   );
 }
 
