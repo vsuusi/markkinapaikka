@@ -1,3 +1,7 @@
+import { FaGithub, FaRegCopyright  } from "react-icons/fa";
+import { MdOutlineReportProblem } from "react-icons/md";
+
+
 import './Footer.css';
 
 function Footer() {
@@ -5,9 +9,9 @@ function Footer() {
     <div className="footer-container">
       <div className="footer-items">
         <h2>Markkinapaikka</h2>
-        <button>GitHub</button>
-        <button>Copyright</button>
-        <button>Report an issue</button>
+        <button><FaGithub /></button>
+        <button><FaRegCopyright /></button>
+        <button><MdOutlineReportProblem /></button>
       </div>
     </div>
   );

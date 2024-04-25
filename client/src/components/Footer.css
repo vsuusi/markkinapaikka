@@ -10,3 +10,14 @@
     align-items: center;
     gap: 5vw;
 }
+
+.footer-container button {
+    font-size: 26px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.1);
+        color: gray;
+    }
+}

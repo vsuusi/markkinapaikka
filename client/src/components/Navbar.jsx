@@ -6,7 +6,10 @@ function Navbar() {
     <div className="navbar-container">
       <div className="navbar-title">
         <Link to="/">
+          <button>
           <h3>Markkinapaikka</h3>
+
+          </button>
         </Link>
       </div>
       <div className="navbar-buttons">

@@ -8,7 +8,6 @@ function SearchBar({ onSearch }) {
     const handleInputChange = (event) => {
         setSearchWord(event.target.value);
         onSearch(event.target.value);
-        console.log(event.target.value);
     }
 
     return (

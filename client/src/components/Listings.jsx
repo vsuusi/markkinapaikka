@@ -7,12 +7,14 @@ import { getItems } from '../../api/items';
 
 function Listings() {
   const [items, setItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(items);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getItems();
         setItems(data);
+        setFilteredItems(data);
       } catch (err) {
         console.error(err);
       }
@@ -20,12 +22,22 @@ function Listings() {
     fetchData();
   }, []);
 
+  const handleSearch = (searchItem) => {
+    const filtered = items.filter((item) =>
+      item.title.toLowerCase().includes(searchItem.toLowerCase())
+      );
+      setFilteredItems(filtered);
+  };
+
   return (
     <>
-    <SearchBar />
+    <SearchBar onSearch={handleSearch}/>
     <div className="listing-container">
+    {filteredItems.length === 0 ? (
+          <div className="no-items-found">No items found.</div>
+        ) : (
       <ul className="listing-list">
-        {items.map((item) => (
+        {filteredItems.map((item) => (
           <div className="list-item" key={item.id}>
             <div className="list-img">
               <img src={item.image_url} alt="kuvan lataus epäonnistui" />
@@ -38,6 +50,7 @@ function Listings() {
           </div>
         ))}
       </ul>
+        )}
     </div>
     </>
   );

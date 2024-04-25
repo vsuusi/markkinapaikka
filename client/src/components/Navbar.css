@@ -44,8 +44,7 @@
     transition: transform 0.25s ease;
 }
 
-.navbar-container button:hover::before,
-.navbar-container button:focus::before {
+.navbar-container button:hover::before {
     transform: scaleX(1);
 }
 
