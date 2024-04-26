@@ -19,6 +19,9 @@ function Navbar() {
         <Link to="/user">
           <button>Profiili</button>
         </Link>
+        <Link to="/login">
+          <button>Kirjaudu</button>
+        </Link>
       </div>
     </div>
   );

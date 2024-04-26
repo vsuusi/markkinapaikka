@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
 
 import './LoginForm.css';
@@ -26,7 +27,7 @@ function LoginForm() {
           <div className="login-register">
             <p>
               Ei vielä käyttäjätunnusta?
-              <a href="#"> Luo käyttäjä</a>
+              <Link to={"/signup"}>Luo käyttäjä </Link>
             </p>
           </div>
         </form>

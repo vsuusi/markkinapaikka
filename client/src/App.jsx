@@ -8,6 +8,7 @@ import UserPage from './pages/UserPage';
 import ErrorPage from './pages/ErrorPage';
 import Rootlayout from './pages/Rootlayout';
 import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -18,6 +19,7 @@ function App() {
       children: [
         { path: '/', element: <LandingPage /> },
         { path: '/login', element: <LoginPage /> },
+        { path: '/signup', element: <SignupPage />},
         { path: '/user', element: <UserPage /> },
         { path: '/new', element: <NewListingPage /> },
       ],

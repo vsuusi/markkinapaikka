@@ -1,6 +1,12 @@
+import Profile from "../components/Profile";
+import Footer from '../components/Footer';
+
 function UserPage() {
   return (
-    <h1>UserPage :)</h1>
+    <>
+    <Profile />
+    <Footer />
+    </>
   );
 }
 
