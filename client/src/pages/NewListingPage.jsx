@@ -1,5 +1,5 @@
-import AddListing from "../components/AddListing";
-import Footer from "../components/Footer";
+import AddListing from '../components/AddListing';
+import Footer from '../components/Footer';
 
 function NewListingPage() {
   return (

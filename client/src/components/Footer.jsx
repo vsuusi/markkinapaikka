@@ -1,5 +1,5 @@
-import { FaGithub, FaRegCopyright  } from "react-icons/fa";
-import { MdOutlineReportProblem } from "react-icons/md";
+import { FaGithub, FaRegCopyright } from 'react-icons/fa';
+import { MdOutlineReportProblem } from 'react-icons/md';
 import logo from '../../resources/logo.png';
 
 import './Footer.css';

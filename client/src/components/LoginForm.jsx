@@ -51,7 +51,7 @@ function LoginForm() {
           <button type="submit">Kirjaudu sisään</button>
 
           <div className="login-forgot">
-            <a href="#">Salasana unohtunut?</a>
+            <a href="/">Salasana unohtunut?</a>
           </div>
 
           <div className="login-register">

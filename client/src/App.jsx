@@ -17,8 +17,8 @@ function App() {
   const [token, setToken] = useState(false);
   const [userId, setuser] = useState(false);
 
-  const login = useCallback((uid, token) => {
-    setToken(token);
+  const login = useCallback((uid, loginToken) => {
+    setToken(loginToken);
     setuser(uid);
   }, []);
 
