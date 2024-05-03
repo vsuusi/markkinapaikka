@@ -3,7 +3,7 @@ import {
 } from '@jest/globals';
 import request from 'supertest';
 import app from '../app';
-import { pool } from '../db/pool';
+import pool from '../db/pool';
 
 let testId;
 
