@@ -1,4 +1,6 @@
-* {
+:root {
+  --red-dark: #e42d14;
+  --red-light: #ef6b59;
 }
 
 body {

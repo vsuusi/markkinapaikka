@@ -18,6 +18,7 @@
     background-color: #fff;
     border: 1px solid black;
     display: flex;
+    overflow-y: auto;
 }
 
 .listing-modal-container button {

@@ -14,6 +14,7 @@ module.exports = {
   settings: { react: { version: '18.2' } },
   plugins: ['react-refresh'],
   rules: {
+    'jsx-a11y/control-has-associated-label': 0,
     'import/prefer-default-export': 0,
     'react/button-has-type': 0,
     'import/extensions': 0,
