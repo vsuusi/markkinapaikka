@@ -27,6 +27,40 @@ function App() {
     setuser(null);
   }, []);
 
+  const authContextValue = useMemo(() => ({
+    isLoggedIn: !!token,
+    token,
+    userId,
+    login,
+    logout,
+  }), [token, userId, login, logout]);
+
+  if (token) {
+    const router = createBrowserRouter([
+      {
+        path: '/',
+        element: <Rootlayout />,
+        errorElement: <ErrorPage />,
+        children: [
+          { path: '/', element: <LandingPage /> },
+          { path: '/login', element: <LoginPage /> },
+          { path: '/signup', element: <SignupPage /> },
+          { path: '/user', element: <UserPage /> },
+          { path: '/new', element: <NewListingPage /> },
+        ],
+      },
+    ]);
+
+    return (
+      <>
+        <Toaster />
+        <AuthContext.Provider value={authContextValue}>
+          <RouterProvider router={router} />
+        </AuthContext.Provider>
+      </>
+    );
+  }
+
   const router = createBrowserRouter([
     {
       path: '/',
@@ -36,27 +70,18 @@ function App() {
         { path: '/', element: <LandingPage /> },
         { path: '/login', element: <LoginPage /> },
         { path: '/signup', element: <SignupPage /> },
-        { path: '/user', element: <UserPage /> },
-        { path: '/new', element: <NewListingPage /> },
       ],
     },
   ]);
 
-  return useMemo(() => (
+  return (
     <>
       <Toaster />
-      <AuthContext.Provider value={{
-        isLoggedIn: !!token,
-        token,
-        userId,
-        login,
-        logout,
-      }}
-      >
+      <AuthContext.Provider value={authContextValue}>
         <RouterProvider router={router} />
       </AuthContext.Provider>
     </>
-  ), [token, userId, login, logout, router]);
+  );
 }
 
 export default App;

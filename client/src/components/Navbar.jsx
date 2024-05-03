@@ -23,12 +23,16 @@ function Navbar() {
             <button>+ Uusi ilmoitus</button>
           </Link>
         )}
-        <Link to="/user">
-          <button>Profiili</button>
-        </Link>
-        <Link to="/login">
-          <button>Kirjaudu</button>
-        </Link>
+        {auth.isLoggedIn && (
+          <Link to="/user">
+            <button>Profiili</button>
+          </Link>
+        )}
+        {!auth.isLoggedIn && (
+          <Link to="/login">
+            <button>Kirjaudu</button>
+          </Link>
+        )}
       </div>
     </div>
   );

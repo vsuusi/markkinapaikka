@@ -2,7 +2,7 @@
     display: flex;
     max-width: 500px;
     margin: 0 auto;
-    margin-top: 10vh;
+    margin-block: 15vh;
     background-color: var(--red-light);
     color: white;
     border-radius: 30px;
