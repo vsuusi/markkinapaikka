@@ -11,4 +11,4 @@ export const addItem = async () => {
     contenType: 'application/json',
   });
   return response.json();
-}
+};

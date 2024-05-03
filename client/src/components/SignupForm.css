@@ -2,11 +2,10 @@
     display: flex;
     max-width: 500px;
     margin: 0 auto;
-    margin-top: 10vh;
-    background-color: salmon;
+    margin-block: 15vh;
+    background-color: var(--red-light);
     color: white;
     border-radius: 30px;
-    border: 1px solid black;
     box-shadow: 0 20px 20px rgba(0,0,0,.2)
 }
 

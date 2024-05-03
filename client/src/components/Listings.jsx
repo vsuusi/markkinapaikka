@@ -25,10 +25,9 @@ function Listings() {
   }, []);
 
   const handleSearch = (searchItem) => {
-    const filtered = items.filter((item) =>
-      item.title.toLowerCase().includes(searchItem.toLowerCase())
-      );
-      setFilteredItems(filtered);
+    const filtered = items.filter((item) => item.title.toLowerCase()
+      .includes(searchItem.toLowerCase()));
+    setFilteredItems(filtered);
   };
 
   const handleItemClick = (itemId) => {
@@ -37,28 +36,37 @@ function Listings() {
 
   return (
     <>
-    <SearchBar onSearch={handleSearch}/>
-    <div className="listing-container">
-    {filteredItems.length === 0 ? (
+      <SearchBar onSearch={handleSearch} />
+      <div className="listing-container">
+        {filteredItems.length === 0 ? (
           <div className="no-items-found">No items found.</div>
         ) : (
-      <ul className="listing-list">
-        {filteredItems.map((item) => (
-          <div className="list-item" key={item.id} onClick={() => handleItemClick(item.id)}>
-            <div className="list-img">
-              <img src={item.image_url} alt="kuvan lataus epäonnistui" />
-              <div className="list-price">
-                <p>{item.price} €</p>
+          <ul className="listing-list">
+            {filteredItems.map((item) => (
+              <div className="list-item" key={item.id} onClick={() => handleItemClick(item.id)}>
+                <div className="list-img">
+                  <img src={item.image_url} alt="kuvan lataus epäonnistui" />
+                  <div className="list-price">
+                    <p>
+                      {item.price}
+                      {' '}
+                      €
+                    </p>
+                  </div>
+                </div>
+                <h2>{item.title}</h2>
+                <p>{item.location}</p>
               </div>
-            </div>
-            <h2>{item.title}</h2>
-            <p>{item.location}</p>
-          </div>
-        ))}
-      </ul>
+            ))}
+          </ul>
         )}
-    </div>
-    {selectedItemId && <ListingModal item={items.find((i) => i.id === selectedItemId)} onClose={() => setSelectedItemId(null)} />}
+      </div>
+      {selectedItemId && (
+      <ListingModal
+        item={items.find((i) => i.id === selectedItemId)}
+        onClose={() => setSelectedItemId(null)}
+      />
+      )}
     </>
   );
 }

@@ -1,11 +1,11 @@
-import Profile from "../components/Profile";
+import Profile from '../components/Profile';
 import Footer from '../components/Footer';
 
 function UserPage() {
   return (
     <>
-    <Profile />
-    <Footer />
+      <Profile />
+      <Footer />
     </>
   );
 }

@@ -1,4 +1,7 @@
+import { useState, useCallback, useMemo } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { AuthContext } from './context/authcontext';
 
 import './App.css';
 
@@ -11,6 +14,53 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 
 function App() {
+  const [token, setToken] = useState(false);
+  const [userId, setuser] = useState(false);
+
+  const login = useCallback((uid, loginToken) => {
+    setToken(loginToken);
+    setuser(uid);
+  }, []);
+
+  const logout = useCallback(() => {
+    setToken(null);
+    setuser(null);
+  }, []);
+
+  const authContextValue = useMemo(() => ({
+    isLoggedIn: !!token,
+    token,
+    userId,
+    login,
+    logout,
+  }), [token, userId, login, logout]);
+
+  if (token) {
+    const router = createBrowserRouter([
+      {
+        path: '/',
+        element: <Rootlayout />,
+        errorElement: <ErrorPage />,
+        children: [
+          { path: '/', element: <LandingPage /> },
+          { path: '/login', element: <LoginPage /> },
+          { path: '/signup', element: <SignupPage /> },
+          { path: '/user', element: <UserPage /> },
+          { path: '/new', element: <NewListingPage /> },
+        ],
+      },
+    ]);
+
+    return (
+      <>
+        <Toaster />
+        <AuthContext.Provider value={authContextValue}>
+          <RouterProvider router={router} />
+        </AuthContext.Provider>
+      </>
+    );
+  }
+
   const router = createBrowserRouter([
     {
       path: '/',
@@ -19,15 +69,18 @@ function App() {
       children: [
         { path: '/', element: <LandingPage /> },
         { path: '/login', element: <LoginPage /> },
-        { path: '/signup', element: <SignupPage />},
-        { path: '/user', element: <UserPage /> },
-        { path: '/new', element: <NewListingPage /> },
+        { path: '/signup', element: <SignupPage /> },
       ],
     },
   ]);
 
   return (
-    <RouterProvider router={router} />
+    <>
+      <Toaster />
+      <AuthContext.Provider value={authContextValue}>
+        <RouterProvider router={router} />
+      </AuthContext.Provider>
+    </>
   );
 }
 

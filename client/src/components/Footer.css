@@ -1,5 +1,5 @@
 .footer-container {
-    height: 250px;
+    height: 200px;
     display: flex;
     justify-content: space-around;
     border-top: .1em solid black;

@@ -3,7 +3,7 @@ import {
   describe, expect, test, beforeEach, jest,
 } from '@jest/globals';
 import request from 'supertest';
-import app from '../app'; // Adjust this path to where your Express app is initialized
+import app from '../app';
 import users from '../models/users.js';
 
 // Mocking external modules

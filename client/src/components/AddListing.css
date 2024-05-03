@@ -1,5 +1,13 @@
 .add-listing-container {
-    background-color: salmon;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-block: 10vh;
+    padding-block: 2rem;
+    background-color: var(--red-light);
+    color: white;
+    border-radius: 30px;
+    border: 1px solid black;
+    box-shadow: 0 20px 20px rgba(0,0,0,.2)
 }
 
 .add-listing-form {
@@ -9,13 +17,12 @@
 
 .add-listing-input-box {
     height: 50px;
-    margin: 30px 0;
+    margin-block: 30px;
 }
 
 .add-listing-input-box input {
-    width: 80%;
     height: 100%;
-    padding-inline: 45px;
+    padding-inline: 40px;
     background: transparent;
     border: none;
     outline: none;

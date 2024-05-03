@@ -4,23 +4,24 @@ import { FaSearch } from 'react-icons/fa';
 import './SearchBar.css';
 
 function SearchBar({ onSearch }) {
-    const [searchWord, setSearchWord] = useState('');
-    const handleInputChange = (event) => {
-        setSearchWord(event.target.value);
-        onSearch(event.target.value);
-    }
+  const [searchWord, setSearchWord] = useState('');
+  const handleInputChange = (event) => {
+    setSearchWord(event.target.value);
+    onSearch(event.target.value);
+  };
 
-    return (
-        <div className="search-bar-container">
-            <input
-                type="text"
-                className="search-bar"
-                placeholder="Search for items..."
-                value={searchWord}
-                onChange={handleInputChange}/>
-            <FaSearch className="search-bar-icon"/>
-        </div>
-    )
-};
+  return (
+    <div className="search-bar-container">
+      <input
+        type="text"
+        className="search-bar"
+        placeholder="Etsi..."
+        value={searchWord}
+        onChange={handleInputChange}
+      />
+      <FaSearch className="search-bar-icon" size={22} />
+    </div>
+  );
+}
 
 export default SearchBar;
