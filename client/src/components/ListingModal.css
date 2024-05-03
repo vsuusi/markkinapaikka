@@ -32,6 +32,8 @@
     border-radius: 1em;
     background-color: #e4e4e4;
     display: flex;
+    justify-content: center;
+    align-items: center;
     & img {
         border-radius: 1em;
         max-width: 100%; /* Limit the image's maximum width */

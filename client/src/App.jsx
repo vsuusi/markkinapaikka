@@ -1,4 +1,6 @@
+import { useState, useCallback, useMemo } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { AuthContext } from './context/authcontext';
 
 import './App.css';
 
@@ -11,6 +13,19 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 
 function App() {
+  const [token, setToken] = useState(false);
+  const [userId, setuser] = useState(false);
+
+  const login = useCallback((uid, token) => {
+    setToken(token);
+    setuser(uid);
+  }, []);
+
+  const logout = useCallback(() => {
+    setToken(null);
+    setuser(null);
+  }, []);
+
   const router = createBrowserRouter([
     {
       path: '/',
@@ -19,16 +34,25 @@ function App() {
       children: [
         { path: '/', element: <LandingPage /> },
         { path: '/login', element: <LoginPage /> },
-        { path: '/signup', element: <SignupPage />},
+        { path: '/signup', element: <SignupPage /> },
         { path: '/user', element: <UserPage /> },
         { path: '/new', element: <NewListingPage /> },
       ],
     },
   ]);
 
-  return (
-    <RouterProvider router={router} />
-  );
+  return useMemo(() => (
+    <AuthContext.Provider value={{
+      isLoggedIn: !!token,
+      token,
+      userId,
+      login,
+      logout,
+    }}
+    >
+      <RouterProvider router={router} />
+    </AuthContext.Provider>
+  ), [token, userId, login, logout, router]);
 }
 
 export default App;

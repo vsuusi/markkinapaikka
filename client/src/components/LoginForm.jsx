@@ -1,20 +1,41 @@
-import { Link } from 'react-router-dom';
+import { useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
+import { loginUser } from '../../api/users';
 
 import './LoginForm.css';
 
 function LoginForm() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const navigate = useNavigate();
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    const formData = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+    loginUser(formData)
+      .then((resp) => {
+        console.log(resp);
+        navigate('/');
+        // catch try tähän error handle formiin ja toast kun success!
+      });
+  };
+
   return (
     <div className="login-container">
       <div className="login-form">
-        <form action="">
+        <form onSubmit={onSubmitHandler}>
           <h1>Login</h1>
           <div className="login-input-box">
-            <input type="text" placeholder="Sähköposti" required />
+            <input ref={emailRef} type="text" placeholder="Sähköposti" required />
             <FaUser className="login-icon" />
           </div>
           <div className="login-input-box">
-            <input type="password" placeholder="Salasana" required />
+            <input ref={passwordRef} type="password" placeholder="Salasana" required />
             <FaLock className="login-icon" />
           </div>
 
@@ -27,7 +48,7 @@ function LoginForm() {
           <div className="login-register">
             <p>
               Ei vielä käyttäjätunnusta?
-              <Link to={"/signup"}>Luo käyttäjä </Link>
+              <Link to="/signup">Luo käyttäjä </Link>
             </p>
           </div>
         </form>
