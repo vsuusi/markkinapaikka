@@ -7,6 +7,9 @@ import avatar from '../../resources/avatar.png';
 function Profile() {
   return (
     <div className="profile-container">
+      <div className="profile-logout">
+        <button>Kirjaudu ulos</button>
+      </div>
       <div className="profile-info">
         <div className="info-left">
           <img src={avatar} alt="avatar" />
@@ -18,7 +21,7 @@ function Profile() {
           <p>Prefered contact: </p>
         </div>
       </div>
-      <h3>My listings</h3>
+      <h3>Minun ilmoitukseni</h3>
       <Listings />
     </div>
   );

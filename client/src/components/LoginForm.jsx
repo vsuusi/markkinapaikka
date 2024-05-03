@@ -1,28 +1,37 @@
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 import { loginUser } from '../../api/users';
+import { AuthContext } from '../context/authcontext';
 
 import './LoginForm.css';
 
 function LoginForm() {
+  const auth = useContext(AuthContext);
+
   const emailRef = useRef();
   const passwordRef = useRef();
 
   const navigate = useNavigate();
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
     const formData = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
-    loginUser(formData)
-      .then((resp) => {
-        console.log(resp);
-        navigate('/');
-        // catch try tähän error handle formiin ja toast kun success!
-      });
+    try {
+      const resp = await loginUser(formData);
+      auth.login(resp.id, resp.token);
+      console.log('logged in!:', resp);
+      toast.success('Kirjauduttu sisään!');
+      navigate('/');
+    } catch (err) {
+      console.log(err);
+    }
+
+    // catch try tähän error handle formiin ja toast kun success!
   };
 
   return (

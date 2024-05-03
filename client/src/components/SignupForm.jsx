@@ -1,6 +1,7 @@
 import { useContext, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 import { signUpUser, loginUser } from '../../api/users';
 import { AuthContext } from '../context/authcontext';
 
@@ -31,6 +32,7 @@ function SignupFrom() {
       .then((loginResponse) => {
         console.log('User logged in successfully:', loginResponse);
         auth.login(loginResponse.id, loginResponse.token);
+        toast.success('Rekisteröinti onnistui!');
         navigate('/');
         // catch try tähän error handle formiin ja toast kun success!
       })

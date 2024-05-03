@@ -1,5 +1,5 @@
 .profile-info {
-    margin-block: 10em;
+    margin-block: 8em;
     display: flex;
 }
 
@@ -12,6 +12,24 @@
 
 .info-left img {
     width: 35%;
+}
+
+.profile-logout {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    & button {
+        background-color: var(--red-dark);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 10px;
+        cursor: pointer;
+        &:hover {
+            background-color: var(--red-light);
+        }
+        
+    }
 }
 
 .info-right {

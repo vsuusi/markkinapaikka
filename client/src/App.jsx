@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { AuthContext } from './context/authcontext';
 
 import './App.css';
@@ -42,16 +43,19 @@ function App() {
   ]);
 
   return useMemo(() => (
-    <AuthContext.Provider value={{
-      isLoggedIn: !!token,
-      token,
-      userId,
-      login,
-      logout,
-    }}
-    >
-      <RouterProvider router={router} />
-    </AuthContext.Provider>
+    <>
+      <Toaster />
+      <AuthContext.Provider value={{
+        isLoggedIn: !!token,
+        token,
+        userId,
+        login,
+        logout,
+      }}
+      >
+        <RouterProvider router={router} />
+      </AuthContext.Provider>
+    </>
   ), [token, userId, login, logout, router]);
 }
 

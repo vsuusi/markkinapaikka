@@ -4,10 +4,11 @@
     height: 50px;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid black;
     background-color: white;
+    border-bottom: 2px solid black;
     z-index: 1;
 }
+
 
 .navbar-title {
     display: flex;
