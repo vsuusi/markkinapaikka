@@ -69,6 +69,7 @@ function Listings({ userid }) {
       </div>
       {selectedItemId && (
       <ListingModal
+        userid={userid}
         item={items.find((i) => i.id === selectedItemId)}
         onClose={() => setSelectedItemId(null)}
       />

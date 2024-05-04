@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../context/authcontext';
+import { deleteItem } from '../../api/items';
 
 import './ListingModal.css';
 
-function ListingModal({ item, onClose }) {
+function ListingModal({ userid, item, onClose }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const auth = useContext(AuthContext);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -22,11 +26,24 @@ function ListingModal({ item, onClose }) {
     }
   };
 
+  const handleItemRemoval = async () => {
+    const request = {
+      token: auth.token,
+      id: item.id,
+    };
+    try {
+      await deleteItem(request);
+      handleClose();
+    } catch (err) {
+      console.error('error deleting item: ', err);
+    }
+  };
+
   return (
   // animaatio laskee ylhäältä ja nousee yläs kun clicked outside
     <div className={`listing-modal-bg ${isOpen ? 'modal--open' : ''}`} onClick={handleOutsideClick} onKeyDown={handleKeyDown}>
       <div className="listing-modal-container">
-        <button onClick={handleClose}>Close</button>
+        <button className="modal-close-button" onClick={handleClose}>Close</button>
         <div className="modal-left">
           <img src={item.image_url} alt="Item" />
         </div>
@@ -34,17 +51,27 @@ function ListingModal({ item, onClose }) {
           <h2>{item.title}</h2>
           <p>{item.description && item.description.length > 0 ? item.description : 'No description provided.'}</p>
           <p>
-            Sijanti:
             {item.location}
+            {' '}
+            📍
           </p>
           <p>
-            Hinta:
             {item.price}
             {' '}
             €
           </p>
           <p>Ilmoittaja: </p>
           <p>Yhteystiedot:</p>
+          {userid && (
+            <div className="modal-edit-buttons">
+              <button>
+                Muokkaa
+              </button>
+              <button onClick={handleItemRemoval}>
+                Poista
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
