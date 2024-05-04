@@ -1,7 +1,7 @@
 import {
   useState, useCallback, useMemo, useEffect,
 } from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthContext } from './context/authcontext';
 
@@ -10,7 +10,6 @@ import './App.css';
 import NewListingPage from './pages/NewListingPage';
 import LandingPage from './pages/LandingPage';
 import UserPage from './pages/UserPage';
-import ErrorPage from './pages/ErrorPage';
 import Rootlayout from './pages/Rootlayout';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -24,14 +23,14 @@ function App() {
     setuser(uid);
     localStorage.setItem(
       'userData',
-      JSON.stringify({ userId: uid, token }),
+      JSON.stringify({ userId: uid, loginToken }),
     );
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('userData'));
-    if (storedData && storedData.token) {
-      login(storedData.userId, storedData.token);
+    if (storedData && storedData.loginToken) {
+      login(storedData.userId, storedData.loginToken);
     }
   }, [login]);
 
@@ -54,13 +53,13 @@ function App() {
       {
         path: '/',
         element: <Rootlayout />,
-        errorElement: <ErrorPage />,
         children: [
           { path: '/', element: <LandingPage /> },
           { path: '/login', element: <LoginPage /> },
           { path: '/signup', element: <SignupPage /> },
           { path: '/user', element: <UserPage /> },
           { path: '/new', element: <NewListingPage /> },
+          { path: '*', element: <Navigate to="/" replace /> },
         ],
       },
     ]);
@@ -79,11 +78,11 @@ function App() {
     {
       path: '/',
       element: <Rootlayout />,
-      errorElement: <ErrorPage />,
       children: [
         { path: '/', element: <LandingPage /> },
         { path: '/login', element: <LoginPage /> },
         { path: '/signup', element: <SignupPage /> },
+        { path: '*', element: <Navigate to="/" replace /> },
       ],
     },
   ]);
