@@ -19,22 +19,45 @@
     border: 1px solid black;
     display: flex;
     overflow-y: auto;
+    position: relative;
+    animation: modal-appear 0.2s ease;
+}
+
+@keyframes modal-appear {
+    from {
+        opacity: 0;
+        transform: translateY(-10vh);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .modal-close-button {
     position: absolute;
-    right: 1;
+    top: 0.5rem; /* Adjust as needed */
+    right: 0.5rem; /* Adjust as needed */
+    margin: .5rem;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--red-dark);
+    &:hover {
+        background-color: var(--red-light);
+    }
 }
 
 .modal-left {
     width: 60%;
     margin: 2em .5em 2em 2em;
-    border-radius: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-right: 1px dotted black;
     & img {
-        max-width: 100%; /* Limit the image's maximum width */
+        max-width: 90%; /* Limit the image's maximum width */
         max-height: 100%; /* Limit the image's maximum height */
         object-fit: contain;
         border-radius: 1em;
@@ -115,4 +138,10 @@
 
 .modal-edit-buttons button:hover::before {
     transform: scaleX(1);
+}
+
+.border {
+    border: 1px solid black;
+    border-radius: 1em;
+    margin: 1.5rem;
 }

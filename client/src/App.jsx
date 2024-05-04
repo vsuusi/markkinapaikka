@@ -1,5 +1,7 @@
-import { useState, useCallback, useMemo } from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {
+  useState, useCallback, useMemo, useEffect,
+} from 'react';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthContext } from './context/authcontext';
 
@@ -8,7 +10,6 @@ import './App.css';
 import NewListingPage from './pages/NewListingPage';
 import LandingPage from './pages/LandingPage';
 import UserPage from './pages/UserPage';
-import ErrorPage from './pages/ErrorPage';
 import Rootlayout from './pages/Rootlayout';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -20,11 +21,23 @@ function App() {
   const login = useCallback((uid, loginToken) => {
     setToken(loginToken);
     setuser(uid);
+    localStorage.setItem(
+      'userData',
+      JSON.stringify({ userId: uid, loginToken }),
+    );
   }, []);
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('userData'));
+    if (storedData && storedData.loginToken) {
+      login(storedData.userId, storedData.loginToken);
+    }
+  }, [login]);
 
   const logout = useCallback(() => {
     setToken(null);
     setuser(null);
+    localStorage.removeItem('userData');
   }, []);
 
   const authContextValue = useMemo(() => ({
@@ -40,13 +53,13 @@ function App() {
       {
         path: '/',
         element: <Rootlayout />,
-        errorElement: <ErrorPage />,
         children: [
           { path: '/', element: <LandingPage /> },
           { path: '/login', element: <LoginPage /> },
           { path: '/signup', element: <SignupPage /> },
           { path: '/user', element: <UserPage /> },
           { path: '/new', element: <NewListingPage /> },
+          { path: '*', element: <Navigate to="/" replace /> },
         ],
       },
     ]);
@@ -65,11 +78,11 @@ function App() {
     {
       path: '/',
       element: <Rootlayout />,
-      errorElement: <ErrorPage />,
       children: [
         { path: '/', element: <LandingPage /> },
         { path: '/login', element: <LoginPage /> },
         { path: '/signup', element: <SignupPage /> },
+        { path: '*', element: <Navigate to="/" replace /> },
       ],
     },
   ]);

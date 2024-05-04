@@ -1,6 +1,8 @@
 import { useContext, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaUser, FaLock } from 'react-icons/fa';
+import {
+  FaUser, FaLock, FaPhone, FaEnvelope,
+} from 'react-icons/fa';
 import toast from 'react-hot-toast';
 import { signUpUser, loginUser } from '../../api/users';
 import { AuthContext } from '../context/authcontext';
@@ -15,6 +17,7 @@ function SignupFrom() {
   const emailRef = useRef();
   const nameRef = useRef();
   const passwordRef = useRef();
+  const phoneRef = useRef();
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -22,6 +25,7 @@ function SignupFrom() {
       email: emailRef.current.value,
       name: nameRef.current.value,
       password: passwordRef.current.value,
+      phone: phoneRef.current.value,
     };
 
     signUpUser(formData)
@@ -48,11 +52,15 @@ function SignupFrom() {
           <h1>Sign up</h1>
           <div className="signup-input-box">
             <input ref={emailRef} type="text" placeholder="Sähköposti" required />
-            <FaUser className="signup-icon" />
+            <FaEnvelope className="signup-icon" />
           </div>
           <div className="signup-input-box">
             <input ref={nameRef} type="text" placeholder="Nimi" required />
             <FaUser className="signup-icon" />
+          </div>
+          <div className="signup-input-box">
+            <input ref={phoneRef} type="number" placeholder="Puhelin" required />
+            <FaPhone className="signup-icon" />
           </div>
           <div className="signup-input-box">
             <input ref={passwordRef} type="password" placeholder="Salasana" required />

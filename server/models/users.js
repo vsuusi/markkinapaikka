@@ -23,6 +23,17 @@ const users = {
       throw new Error(error);
     }
   },
+  findUserById: async (id) => {
+    const selectQuery = 'SELECT * FROM `users` WHERE id=?;';
+    try {
+      const connection = await pool.getConnection();
+      const [results] = await connection.query(selectQuery, [id]);
+      connection.release();
+      return results[0];
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
 };
 
 export default users;
