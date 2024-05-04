@@ -1,5 +1,7 @@
-export const signUpUser = async ({ email, name, password }) => {
-  console.log('api/users/signup: ', email, name, password);
+export const signUpUser = async ({
+  email, name, password, phone,
+}) => {
+  console.log('api/users/signup: ', email, name, password, phone);
   const res = await fetch(
     'http://localhost:3000/api/users/signup',
     {
@@ -12,6 +14,7 @@ export const signUpUser = async ({ email, name, password }) => {
         email,
         name,
         password,
+        phone,
       }),
     },
   );
@@ -34,4 +37,11 @@ export const loginUser = async ({ email, password }) => {
     },
   );
   return res.json();
+};
+
+export const getUserById = async (id) => {
+  const response = await fetch(`http://localhost:3000/api/users/${id}`, {
+    method: 'GET',
+  });
+  return response.json();
 };

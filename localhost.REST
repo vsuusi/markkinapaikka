@@ -51,9 +51,10 @@ POST http://localhost:3000/api/users/signup HTTP/1.1
 content-type: application/json
 
 {
-    "email": "make2",
+    "email": "make5",
     "name": "Sane", 
-    "password": "123"
+    "password": "123",
+    "phone": "0401234567"
 }
 
 ### LOGIN USER

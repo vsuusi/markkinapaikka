@@ -14,7 +14,7 @@ const getUserById = async (req, res) => {
 const signUpUser = async (req, res) => {
   // TODO: MISSING VALIDATION
   const {
-    name, email, password, id,
+    name, email, password, phone, id,
   } = req.body;
 
   const exist = await users.findByEmail(email);
@@ -33,6 +33,7 @@ const signUpUser = async (req, res) => {
     id,
     name,
     email,
+    phone,
     password: hashedPassword,
   };
 

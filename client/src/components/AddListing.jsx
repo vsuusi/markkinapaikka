@@ -1,4 +1,6 @@
 import { useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { addItem } from '../../api/items';
 import { AuthContext } from '../context/authcontext';
 
@@ -6,6 +8,7 @@ import './AddListing.css';
 
 function AddListing() {
   const auth = useContext(AuthContext);
+  const navigator = useNavigate();
 
   const titleRef = useRef();
   const descriptionRef = useRef();
@@ -27,6 +30,8 @@ function AddListing() {
     };
     try {
       const resp = await addItem(newItem);
+      navigator('/');
+      toast.success('Ilmoituksen luonti onnistui!');
       console.log('new item added succesfully: ', resp);
     } catch (err) {
       console.error('error posting item: ', err);
@@ -42,7 +47,7 @@ function AddListing() {
             <input type="text" maxLength="45" ref={titleRef} placeholder="Otsikko" required />
           </div>
           <div className="add-listing-input-box">
-            <input type="number" step="0.01" min="0" ref={priceRef} placeholder="Hinta" />
+            <input type="number" step="0.01" min="0" ref={priceRef} placeholder="Hinta" required />
           </div>
           <div className="add-listing-input-box">
             <input type="text" maxLength="45" ref={locationRef} placeholder="Sijanti" />

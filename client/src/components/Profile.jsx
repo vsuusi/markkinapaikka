@@ -1,13 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authcontext';
 import Listings from './Listings.jsx';
+import { getUserById } from '../../api/users.js';
 
 import avatar from '../../resources/avatar.png';
 
 import './Profile.css';
 
 function Profile() {
+  const [userData, setUserData] = useState([]);
   const auth = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -15,6 +17,29 @@ function Profile() {
   const handleLogOut = () => {
     auth.logout();
     navigate('/');
+  };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await getUserById(auth.userId);
+        console.log(data);
+        setUserData(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchUserData();
+  }, [auth.userId]);
+
+  const dateParser = (dateString) => {
+    const date = new Date(dateString);
+    const currentDate = new Date();
+    const differenceInMilliseconds = currentDate - date;
+    const millisecondsInADay = 1000 * 60 * 60 * 24;
+    const daysSince = Math.floor(differenceInMilliseconds / millisecondsInADay);
+
+    return daysSince;
   };
 
   return (
@@ -28,12 +53,17 @@ function Profile() {
         </div>
         <div className="info-right">
           <p>
-            Name:
-            {auth.userId}
+            {userData.name}
           </p>
-          <p>Email: </p>
-          <p>Phone: </p>
-          <p>Prefered contact: </p>
+          <p>{userData.email}</p>
+          <p>{userData.phone}</p>
+          <p>
+            Markkinapaikalla
+            {' '}
+            {dateParser(userData.date_created)}
+            {' '}
+            päivää!
+          </p>
         </div>
       </div>
       <h3>Minun ilmoitukseni</h3>

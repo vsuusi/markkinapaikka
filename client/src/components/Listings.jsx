@@ -7,8 +7,7 @@ import ListingModal from './ListingModal';
 import { getItems } from '../../api/items';
 
 function Listings({ userid }) {
-  const [items, setItems] = useState([]);
-  const [filteredItems, setFilteredItems] = useState(items);
+  const [filteredItems, setFilteredItems] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState(null);
 
   useEffect(() => {
@@ -17,10 +16,8 @@ function Listings({ userid }) {
         const data = await getItems();
         if (userid) {
           const dataByUserID = data.filter((item) => item.user_id === userid);
-          setItems(dataByUserID);
           setFilteredItems(dataByUserID);
         } else {
-          setItems(data);
           setFilteredItems(data);
         }
       } catch (err) {
@@ -31,7 +28,7 @@ function Listings({ userid }) {
   }, [userid]);
 
   const handleSearch = (searchWord) => {
-    const filtered = items.filter((item) => item.title.toLowerCase()
+    const filtered = filteredItems.filter((item) => item.title.toLowerCase()
       .includes(searchWord.toLowerCase()));
     setFilteredItems(filtered);
   };
@@ -48,7 +45,7 @@ function Listings({ userid }) {
           <div className="no-items-found">No items found.</div>
         ) : (
           <ul className="listing-list">
-            {filteredItems.map((item) => (
+            {[...filteredItems].reverse().map((item) => (
               <div className="list-item" key={item.id} onClick={() => handleItemClick(item.id)}>
                 <div className="list-img">
                   <img src={item.image_url} alt="kuvan lataus epäonnistui" />
@@ -70,7 +67,7 @@ function Listings({ userid }) {
       {selectedItemId && (
       <ListingModal
         userid={userid}
-        item={items.find((i) => i.id === selectedItemId)}
+        item={filteredItems.find((i) => i.id === selectedItemId)}
         onClose={() => setSelectedItemId(null)}
       />
       )}
