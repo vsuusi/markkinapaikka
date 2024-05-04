@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../context/authcontext';
 import { deleteItem } from '../../api/items';
+import noPhoto from '../../resources/nophoto.jpg';
 
 import './ListingModal.css';
 
@@ -52,7 +53,7 @@ function ListingModal({ userid, item, onClose }) {
       <div className="listing-modal-container">
         <button className="modal-close-button" onClick={handleClose}>X</button>
         <div className="modal-left">
-          <img src={item.image_url} alt="Item" />
+          <img src={item.image_url || noPhoto} alt="Kuva ei saatavilla" />
         </div>
         <div className="modal-right">
           <h2>{item.title}</h2>

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import './Listings.css';
-
 import SearchBar from './SearchBar';
 import ListingModal from './ListingModal';
-
+import noPhoto from '../../resources/nophoto.jpg';
 import { getItems } from '../../api/items';
+
+import './Listings.css';
 
 function Listings({ userid }) {
   const [filteredItems, setFilteredItems] = useState([]);
@@ -48,7 +48,7 @@ function Listings({ userid }) {
             {[...filteredItems].reverse().map((item) => (
               <div className="list-item" key={item.id} onClick={() => handleItemClick(item.id)}>
                 <div className="list-img">
-                  <img src={item.image_url} alt="kuvan lataus epäonnistui" />
+                  <img src={item.image_url ? item.image_url : noPhoto} alt="Kuva ei saatavilla" />
                   <div className="list-price">
                     <p>
                       {item.price}
