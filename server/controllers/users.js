@@ -3,6 +3,14 @@ import jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import users from '../models/users.js';
 
+const getUserById = async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const response = await users.findUserById(id);
+  if (response) {
+    res.send(response);
+  }
+};
+
 const signUpUser = async (req, res) => {
   // TODO: MISSING VALIDATION
   const {
@@ -102,6 +110,7 @@ const loginUser = async (req, res) => {
 };
 
 export {
+  getUserById,
   signUpUser,
   loginUser,
 };
