@@ -1,11 +1,11 @@
 .profile-info {
-    margin-block: 8em;
+    margin-block: 3em;
     display: flex;
 }
 
 .info-left {
     width: 50%;
-    margin: 2em .5em 2em 2em;
+    margin: 2em;
     border-radius: 1em;
     background-color: #e4e4e4;
 }

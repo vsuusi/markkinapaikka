@@ -6,7 +6,7 @@ import ListingModal from './ListingModal';
 
 import { getItems } from '../../api/items';
 
-function Listings() {
+function Listings({ userid }) {
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState(items);
   const [selectedItemId, setSelectedItemId] = useState(null);
@@ -15,18 +15,24 @@ function Listings() {
     const fetchData = async () => {
       try {
         const data = await getItems();
-        setItems(data);
-        setFilteredItems(data);
+        if (userid) {
+          const dataByUserID = data.filter((item) => item.user_id === userid);
+          setItems(dataByUserID);
+          setFilteredItems(dataByUserID);
+        } else {
+          setItems(data);
+          setFilteredItems(data);
+        }
       } catch (err) {
         console.error(err);
       }
     };
     fetchData();
-  }, []);
+  }, [userid]);
 
-  const handleSearch = (searchItem) => {
+  const handleSearch = (searchWord) => {
     const filtered = items.filter((item) => item.title.toLowerCase()
-      .includes(searchItem.toLowerCase()));
+      .includes(searchWord.toLowerCase()));
     setFilteredItems(filtered);
   };
 

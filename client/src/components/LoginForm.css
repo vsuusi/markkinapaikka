@@ -3,7 +3,7 @@
     max-width: 500px;
     margin: 0 auto;
     margin-block: 15vh;
-    background-color: var(--red-light);
+    background: linear-gradient(90deg, #a52323fd, var(--red-light));
     color: white;
     border-radius: 30px;
     box-shadow: 0 20px 20px rgba(0,0,0,.2)

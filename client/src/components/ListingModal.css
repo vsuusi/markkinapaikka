@@ -13,8 +13,8 @@
 
 .listing-modal-container {
     border-radius: 1em;
-    width: 80vw;
-    height: 80vh;
+    width: 65vw;
+    height: 75vh;
     background-color: #fff;
     border: 1px solid black;
     display: flex;
@@ -35,7 +35,6 @@
     justify-content: center;
     align-items: center;
     & img {
-        border-radius: 1em;
         max-width: 100%; /* Limit the image's maximum width */
         max-height: 100%; /* Limit the image's maximum height */
         object-fit: contain;
