@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+import noPhoto from '../../resources/nophoto.jpg';
 import SearchBar from './SearchBar';
 import ListingModal from './ListingModal';
-import noPhoto from '../../resources/nophoto.jpg';
 import { getItems } from '../../api/items';
 
 import './Listings.css';
 
 function Listings({ userid }) {
+  const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState(null);
 
@@ -16,8 +17,10 @@ function Listings({ userid }) {
         const data = await getItems();
         if (userid) {
           const dataByUserID = data.filter((item) => item.user_id === userid);
+          setItems(dataByUserID);
           setFilteredItems(dataByUserID);
         } else {
+          setItems(data);
           setFilteredItems(data);
         }
       } catch (err) {
@@ -28,7 +31,7 @@ function Listings({ userid }) {
   }, [userid]);
 
   const handleSearch = (searchWord) => {
-    const filtered = filteredItems.filter((item) => item.title.toLowerCase()
+    const filtered = items.filter((item) => item.title.toLowerCase()
       .includes(searchWord.toLowerCase()));
     setFilteredItems(filtered);
   };
@@ -67,7 +70,7 @@ function Listings({ userid }) {
       {selectedItemId && (
       <ListingModal
         userid={userid}
-        item={filteredItems.find((i) => i.id === selectedItemId)}
+        item={items.find((i) => i.id === selectedItemId)}
         onClose={() => setSelectedItemId(null)}
       />
       )}
