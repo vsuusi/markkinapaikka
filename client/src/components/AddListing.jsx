@@ -39,19 +39,19 @@ function AddListing() {
         <form onSubmit={submitHandler}>
           <h1>Luo uusi ilmoitus</h1>
           <div className="add-listing-input-box">
-            <input type="text" ref={titleRef} placeholder="Otsikko" />
+            <input type="text" maxLength="45" ref={titleRef} placeholder="Otsikko" required />
           </div>
           <div className="add-listing-input-box">
-            <input type="text" ref={descriptionRef} placeholder="Kuvaus" />
+            <input type="number" step="0.01" min="0" ref={priceRef} placeholder="Hinta" />
           </div>
           <div className="add-listing-input-box">
-            <input type="text" ref={priceRef} placeholder="Hinta" />
+            <input type="text" maxLength="45" ref={locationRef} placeholder="Sijanti" />
+          </div>
+          <div className="add-listing-textarea-box">
+            <textarea type="text" ref={descriptionRef} placeholder="Kuvaus" />
           </div>
           <div className="add-listing-input-box">
-            <input type="text" ref={locationRef} placeholder="Sijanti" />
-          </div>
-          <div className="add-listing-input-box">
-            <input type="text" ref={imageUrlRef} placeholder="Linkki kuvaan" />
+            <input type="text" maxLength="255" ref={imageUrlRef} placeholder="Linkki kuvaan" />
           </div>
           <button type="submit">Luo ilmoitus</button>
         </form>

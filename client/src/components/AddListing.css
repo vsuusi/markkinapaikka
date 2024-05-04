@@ -2,11 +2,11 @@
     max-width: 400px;
     margin: 0 auto;
     margin-block: 10vh;
-    padding-block: 2rem;
-    background-color: var(--red-light);
+    padding-block: 1rem;
+    padding-bottom: 2rem;
+    background: linear-gradient(45deg, #a52323fd, var(--red-light));
     color: white;
     border-radius: 30px;
-    border: 1px solid black;
     box-shadow: 0 20px 20px rgba(0,0,0,.2)
 }
 
@@ -29,6 +29,24 @@
     border: 2px solid rgba(255,255,255,.3);
     border-radius: 40px;
     color: #fff;
+    font-size: 16px;
+    &::placeholder{
+        color: rgb(255,255,255, 0.8);
+    }
+}
+
+.add-listing-textarea-box textarea {
+    height: 200%;
+    padding-inline: 40px;
+    padding-block: 20px;
+    padding: 10px 40px 30px 40px;
+    margin-bottom: -10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 35px;
+    color: #ffffff;
     font-size: 16px;
     &::placeholder{
         color: rgb(255,255,255, 0.8);
