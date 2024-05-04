@@ -19,11 +19,22 @@
     border: 1px solid black;
     display: flex;
     overflow-y: auto;
+    position: relative;
 }
 
 .modal-close-button {
     position: absolute;
-    right: 1;
+    top: 0.5rem; /* Adjust as needed */
+    right: 0.5rem; /* Adjust as needed */
+    margin: .5rem;
+    height: 30px;
+    width: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--red-dark);
+    &:hover {
+        background-color: var(--red-light);
+    }
 }
 
 .modal-left {
