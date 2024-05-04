@@ -48,7 +48,6 @@ function ListingModal({ userid, item, onClose }) {
   };
   */
   return (
-  // animaatio laskee ylhäältä ja nousee yläs kun clicked outside
     <div className={`listing-modal-bg ${isOpen ? 'modal--open' : ''}`} onClick={handleOutsideClick} onKeyDown={handleKeyDown}>
       <div className="listing-modal-container">
         <button className="modal-close-button" onClick={handleClose}>X</button>
