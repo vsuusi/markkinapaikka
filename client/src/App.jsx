@@ -1,4 +1,6 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import {
+  useState, useCallback, useMemo, useEffect,
+} from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthContext } from './context/authcontext';

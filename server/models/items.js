@@ -5,7 +5,7 @@ const items = {
     try {
       const connection = await pool.getConnection();
       const [results] = await connection.query(
-        'SELECT * FROM `items`',
+        'SELECT items.*, users.name AS user_name, users.phone AS user_phone FROM items JOIN users ON items.user_id = users.id;',
       );
       connection.release();
       return results;

@@ -6,6 +6,7 @@ import './ListingModal.css';
 
 function ListingModal({ userid, item, onClose }) {
   const [isOpen, setIsOpen] = useState(false);
+  console.log(item);
 
   const auth = useContext(AuthContext);
 
@@ -56,19 +57,24 @@ function ListingModal({ userid, item, onClose }) {
         </div>
         <div className="modal-right">
           <h2>{item.title}</h2>
-          <p>{item.description && item.description.length > 0 ? item.description : 'No description provided.'}</p>
-          <p>
-            {item.location}
-            {' '}
-            📍
-          </p>
+          <p>{item.description && item.description.length > 0 ? item.description : 'Ei kuvausta.'}</p>
+          <p>{item.location && item.location.length > 0 ? item.location : 'Ei sijantitietoa.'}</p>
           <p>
             {item.price}
             {' '}
             €
           </p>
-          <p>Ilmoittaja: </p>
-          <p>Yhteystiedot:</p>
+          <div className="border" />
+          <p>
+            Ilmoittanut:
+            {' '}
+            <strong>{item.user_name}</strong>
+          </p>
+          <p>
+            Puhelin:
+            {' '}
+            <strong>{item.user_phone}</strong>
+          </p>
           {userid && (
             <div className="modal-edit-buttons">
               <button>
