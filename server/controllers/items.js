@@ -16,15 +16,8 @@ const getItemById = async (req, res) => {
 };
 
 const createItem = async (req, res) => {
-  const item = {
-    user_id: req.body.user_id, // needs to be changed
-    title: req.body.title,
-    description: req.body.description,
-    price: req.body.price,
-    category: req.body.category,
-    location: req.body.location,
-    image_url: req.body.image_url,
-  };
+  const item = req.body;
+  console.log(req.body);
   const response = await items.createNewItem(item);
   if (response) {
     item.id = response.insertId;
