@@ -27,14 +27,17 @@ function Profile() {
           <img src={avatar} alt="avatar" />
         </div>
         <div className="info-right">
-          <p>Name: </p>
+          <p>
+            Name:
+            {auth.userId}
+          </p>
           <p>Email: </p>
           <p>Phone: </p>
           <p>Prefered contact: </p>
         </div>
       </div>
       <h3>Minun ilmoitukseni</h3>
-      <Listings />
+      <Listings userid={auth.userId} />
     </div>
   );
 }

@@ -24,7 +24,7 @@ function ListingModal({ item, onClose }) {
 
   return (
   // animaatio laskee ylhäältä ja nousee yläs kun clicked outside
-    <button className={`listing-modal-bg ${isOpen ? 'modal--open' : ''}`} onClick={handleOutsideClick} onKeyDown={handleKeyDown}>
+    <div className={`listing-modal-bg ${isOpen ? 'modal--open' : ''}`} onClick={handleOutsideClick} onKeyDown={handleKeyDown}>
       <div className="listing-modal-container">
         <button onClick={handleClose}>Close</button>
         <div className="modal-left">
@@ -47,7 +47,7 @@ function ListingModal({ item, onClose }) {
           <p>Yhteystiedot:</p>
         </div>
       </div>
-    </button>
+    </div>
   );
 }
 
