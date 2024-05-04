@@ -32,6 +32,8 @@
     cursor: pointer;
     position: relative;
     z-index: 1;
+    font-family: 'QuickSand', sans-serif;
+    font-weight: 600;
 }
 
 .navbar-container button::before {
