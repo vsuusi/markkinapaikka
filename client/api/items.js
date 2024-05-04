@@ -28,3 +28,14 @@ export const addItem = async ({
   });
   return response.json();
 };
+
+export const deleteItem = async ({ id, token }) => {
+  const response = await fetch(`http://localhost:3000/api/items/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.json();
+};
