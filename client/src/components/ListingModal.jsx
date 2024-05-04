@@ -38,7 +38,14 @@ function ListingModal({ userid, item, onClose }) {
       console.error('error deleting item: ', err);
     }
   };
-
+  /*
+  const handleItemUpdate = async () => {
+    const updatedItem = {
+      token: auth.token,
+      id: item.id,
+    };
+  };
+  */
   return (
   // animaatio laskee ylhäältä ja nousee yläs kun clicked outside
     <div className={`listing-modal-bg ${isOpen ? 'modal--open' : ''}`} onClick={handleOutsideClick} onKeyDown={handleKeyDown}>

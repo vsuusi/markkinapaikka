@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthContext } from './context/authcontext';
@@ -20,11 +20,23 @@ function App() {
   const login = useCallback((uid, loginToken) => {
     setToken(loginToken);
     setuser(uid);
-  }, []);
+    localStorage.setItem(
+      'userData',
+      JSON.stringify({ userId: uid, token }),
+    );
+  }, [token]);
+
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('userData'));
+    if (storedData && storedData.token) {
+      login(storedData.userId, storedData.token);
+    }
+  }, [login]);
 
   const logout = useCallback(() => {
     setToken(null);
     setuser(null);
+    localStorage.removeItem('userData');
   }, []);
 
   const authContextValue = useMemo(() => ({
