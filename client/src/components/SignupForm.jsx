@@ -21,6 +21,7 @@ function SignupFrom() {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+
     const formData = {
       email: emailRef.current.value,
       name: nameRef.current.value,
@@ -28,19 +29,18 @@ function SignupFrom() {
       phone: phoneRef.current.value,
     };
 
-    signUpUser(formData)
-      .then(loginUser(formData))
-      .then((loginResponse) => {
-        auth.login(loginResponse.id, loginResponse.token);
-        toast.success('Rekisteröinti onnistui!');
-        navigate('/');
-      })
-      .catch((error) => {
-        toast.error('Rekisteröiminen epäonnistui. Yritä myöhemmin uudelleen.', {
-          id: 'signuperror',
-        });
-        throw new Error(error);
+    try {
+      const signupResponse = await signUpUser(formData);
+      const loginResponse = await loginUser(signupResponse);
+      auth.login(loginResponse.id, loginResponse.token);
+      toast.success('Rekisteröinti onnistui!');
+      navigate('/');
+    } catch (err) {
+      toast.error('Rekisteröiminen epäonnistui. Yritä myöhemmin uudelleen.', {
+        id: 'signuperror',
       });
+      throw new Error('error loginnauksesa', err);
+    }
   };
 
   return (
