@@ -14,9 +14,7 @@ services:
         - mysql-data:/var/lib/mysql
 
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
     restart: always
     env_file:
