@@ -29,11 +29,9 @@ function SignupFrom() {
     };
 
     try {
-      const signUpResponse = await signUpUser(formData);
-      const loginResponse = await loginUser(signUpResponse);
-      auth.login(loginResponse.id, loginResponse.token);
+      await signUpUser(formData);
       toast.success('Rekisteröinti onnistui!');
-      navigate('/');
+      navigate('/login');
     } catch (err) {
       toast.error('Rekisteröiminen epäonnistui. Yritä myöhemmin uudelleen.', {
         id: 'signuperror',
