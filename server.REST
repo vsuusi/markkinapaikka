@@ -53,7 +53,7 @@ POST https://markkinapaikka.onrender.com/api/users/signup HTTP/1.1
 content-type: application/json
 
 {
-    "email": "tommi",
+    "email": "tommi2",
     "name": "Sane", 
     "password": "123",
     "phone": "0401234567"
@@ -65,7 +65,7 @@ POST https://markkinapaikka.onrender.com/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "tommi",
+    "email": "tommi2",
     "password": "123"
 }
 
