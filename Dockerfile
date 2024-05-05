@@ -2,7 +2,7 @@
 FROM node:20-bookworm-slim as build-stage
 
 # build client
-WORKDIR /usr/src/app/client
+WORKDIR /app/client
 
 COPY ./client/package*.json ./
 
@@ -18,18 +18,20 @@ FROM node:20-bookworm-slim
 
 # get client dist files from build stage
 
-WORKDIR /usr/src/app/client
+WORKDIR /app/client
 
-COPY --from=build-stage /usr/src/app/client/dist ./dist
+COPY --from=build-stage /app/client/dist ./dist
 
 # get server files
 
-WORKDIR /usr/src/app/server
+WORKDIR /app/server
 
 COPY ./server/package*.json ./
 
 RUN npm install
 
 COPY ./server .
+
+EXPOSE 3000
 
 CMD ["npm", "start"]

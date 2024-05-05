@@ -11,10 +11,12 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.use(express.static('../client/dist'));
+
 app.use('/api/users', usersRouter);
 app.use('/api/items', itemsRouter);
 
-app.get('/health', (req, res) => {
+app.get('/', (req, res) => {
   res.status(200).send('Health check Ok!');
 });
 
