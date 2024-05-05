@@ -13,4 +13,12 @@ export default defineConfig({
       reporter: ['text', 'json', 'html'],
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: process.env.VITE_PROXY_TARGET,
+        changeOrigin: true,
+      },
+    },
+  },
 });
