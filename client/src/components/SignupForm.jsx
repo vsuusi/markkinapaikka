@@ -1,17 +1,14 @@
-import { useContext, useRef } from 'react';
+import { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   FaUser, FaLock, FaPhone, FaEnvelope,
 } from 'react-icons/fa';
 import toast from 'react-hot-toast';
-import { signUpUser, loginUser } from '../../api/users';
-import { AuthContext } from '../context/authcontext';
+import { signUpUser } from '../../api/users';
 
 import './SignupForm.css';
 
 function SignupFrom() {
-  const auth = useContext(AuthContext);
-
   const navigate = useNavigate();
 
   const emailRef = useRef();
