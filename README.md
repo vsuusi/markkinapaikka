@@ -30,23 +30,17 @@
 
 ### Server setup
 
-For running the application without any additional setup using Docker, see: [Development with Docker](#development-with-docker).
-
 1. [Node](https://nodejs.org/en) 20.x is required
 2. Run `npm install` in `/server` directory
-3. Setup the environment in `.env` file, you only need to setup JTW_KEY secret
+3. Setup the environment in `.env` file, you only need to setup JWT_KEY secret
 5. These scripts can now be run:
   - `npm start` for running server in production mode
   - `npm run dev` for running server in development mode ([hot reload](https://stackoverflow.com/a/43246550/))
   - `npm run lint` to run [Eslint](https://eslint.org/) for checking code formatting and style.
 
 
-### API Documentation
+### API Endpoints
 
-### Endpoints:
-
-
-### ---- ITEMS ----
 
 GET /api/items
 
@@ -83,4 +77,4 @@ POST /api/users/login
 
 ## Project summary
 
-Server and client creation was smooth. I used a lot of time in pure css, i should look into css libraries for future projects. In the end i faced few problems with deployment, with signin up and logging in. I started the project too late, and ended up not meeting all the requirements, which are for the future.
+Server and client creation was smooth. I used a lot of time in pure css, i should look into css libraries for future projects. In the end i faced few problems with deployment, with signin up and logging in. I started the project too late, and ended up not meeting all the requirements, which I might look into the future.
