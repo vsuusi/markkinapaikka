@@ -44,7 +44,6 @@ jobs:
       #- name: Build the client
       #  working-directory: ./client
       #  run: npm run build
-
         # install deps
         # run linter
         # run tests
