@@ -4,7 +4,7 @@ import 'dotenv/config';
 import users from '../models/users.js';
 
 const getUserById = async (req, res) => {
-  const id = parseInt(req.params.id, 10);
+  const id = req.body.id;
   const response = await users.findUserById(id);
   if (response) {
     res.send(response);

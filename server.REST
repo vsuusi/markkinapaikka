@@ -2,13 +2,13 @@
 
 ### ---- ITEMS ----
 ### get all items
-GET http://localhost:3000/api/items HTTP/1.1
+GET https://markkinapaikka.onrender.com/api/items HTTP/1.1
 
 ### get item by id
-GET http://localhost:3000/api/items/3 HTTP/1.1
+GET https://markkinapaikka.onrender.com/api/items/3 HTTP/1.1
 
 ### post new item
-POST http://localhost:3000/api/items HTTP/1.1
+POST https://markkinapaikka.onrender.com/api/items HTTP/1.1
 Authorization: BEARER {{authToken}}
 content-type: application/json
 
@@ -23,7 +23,9 @@ content-type: application/json
 }
 
 ### update item
-PUT http://localhost:3000/api/items/2 HTTP/1.1
+
+# not applied in client hence anyone can update and delete items
+PUT https://markkinapaikka.onrender.com/api/items/2 HTTP/1.1
 Authorization: BEARER {{authToken}}
 content-type: application/json
 
@@ -37,21 +39,21 @@ content-type: application/json
 }
 
 ### delete item by id
-DELETE  http://localhost:3000/api/items/2 HTTP/1.1
+DELETE  https://markkinapaikka.onrender.com/api/items/2 HTTP/1.1
 Authorization: BEARER {{authToken}}
 
 
 ### ---- USERS ----
 
 ### get user by id
-GET http://localhost:3000/api/users/3 HTTP/1.1
+GET https://markkinapaikka.onrender.com/api/users/8 HTTP/1.1
 
 ### SIGN UP USER
-POST http://localhost:3000/api/users/signup HTTP/1.1
+POST https://markkinapaikka.onrender.com/api/users/signup HTTP/1.1
 content-type: application/json
 
 {
-    "email": "make5",
+    "email": "tommi",
     "name": "Sane", 
     "password": "123",
     "phone": "0401234567"
@@ -59,11 +61,11 @@ content-type: application/json
 
 ### LOGIN USER
 # @name login
-POST http://localhost:3000/api/users/login HTTP/1.1
+POST https://markkinapaikka.onrender.com/api/users/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "make5",
+    "email": "tommi",
     "password": "123"
 }
 
