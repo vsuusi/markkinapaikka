@@ -26,10 +26,9 @@ function Profile() {
     const fetchUserData = async () => {
       try {
         const data = await getUserById(auth.userId);
-        console.log(data);
         setUserData(data);
       } catch (err) {
-        console.error(err);
+        throw new Error(err);
       }
     };
     fetchUserData();

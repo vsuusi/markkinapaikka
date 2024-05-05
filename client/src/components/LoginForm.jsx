@@ -24,14 +24,12 @@ function LoginForm() {
     try {
       const resp = await loginUser(formData);
       auth.login(resp.id, resp.token);
-      console.log('logged in!:', resp);
       toast.success('Kirjauduttu sisään!');
       navigate('/');
     } catch (err) {
       toast.error('Kirjautuminen epäonnistui. Yritä myöhemmin uudelleen.', {
         id: 'loginerror',
       });
-      console.log(err);
     }
 
     // catch try tähän error handle formiin ja toast kun success!

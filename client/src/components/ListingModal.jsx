@@ -8,7 +8,6 @@ import './ListingModal.css';
 
 function ListingModal({ userid, item, onClose }) {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(item);
 
   const auth = useContext(AuthContext);
 
@@ -39,7 +38,7 @@ function ListingModal({ userid, item, onClose }) {
       toast.success('Ilmoitus poistettu!');
       handleClose();
     } catch (err) {
-      console.error('error deleting item: ', err);
+      toast.error('Virhe ilmoituksen poistamisessa.');
     }
   };
   /*

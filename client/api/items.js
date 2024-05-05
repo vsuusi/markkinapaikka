@@ -9,7 +9,6 @@ export const getItems = async () => {
 export const addItem = async ({
   user_id, title, description, price, location, image_url, token,
 }) => {
-  console.log(title, description, price, location, image_url, user_id, token);
   const response = await fetch('/api/items', {
     method: 'POST',
     headers: {

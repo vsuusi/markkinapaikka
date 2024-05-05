@@ -18,7 +18,6 @@ function AddListing() {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    console.log('userid: ', auth.userId);
     const newItem = {
       user_id: auth.userId,
       title: titleRef.current.value,
@@ -29,12 +28,11 @@ function AddListing() {
       token: auth.token,
     };
     try {
-      const resp = await addItem(newItem);
+      await addItem(newItem);
       navigator('/');
       toast.success('Ilmoituksen luonti onnistui!');
-      console.log('new item added succesfully: ', resp);
     } catch (err) {
-      console.error('error posting item: ', err);
+      toast.error('Virhe ilmoituksen lisäämisessä. Yritä myöhemmin uudestaan.');
     }
   };
 
