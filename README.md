@@ -6,7 +6,7 @@
 
 ## Summary
 
-- The application is created with [JavaScript](https://developer.mozilla.org/en-US/docs/Web/javascript) and consists of a [Vite](https://vitejs.dev/)/[React](https://react.dev/) frontend, a [Node](https://nodejs.org/en) backend with an [Express](https://expressjs.com/) API and a mySQL database.
+- The application is created with [JavaScript](https://developer.mozilla.org/en-US/docs/Web/javascript) and consists of a [Vite](https://vitejs.dev/)/[React](https://react.dev/) frontend, a [Node](https://nodejs.org/en) backend with an [Express](https://expressjs.com/) API and a mySQL database hosted in Freedb.
 
 ## Client
 
