@@ -24,7 +24,7 @@ function Listings({ userid }) {
           setFilteredItems(data);
         }
       } catch (err) {
-        console.error(err);
+        throw new Error(err);
       }
     };
     fetchData();

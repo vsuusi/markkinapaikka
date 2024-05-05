@@ -29,22 +29,17 @@ function SignupFrom() {
     };
 
     signUpUser(formData)
-      .then((signUpResponse) => {
-        console.log(signUpResponse);
-        return loginUser(formData);
-      })
+      .then(loginUser(formData))
       .then((loginResponse) => {
-        console.log('User logged in successfully:', loginResponse);
         auth.login(loginResponse.id, loginResponse.token);
         toast.success('Rekisteröinti onnistui!');
         navigate('/');
-        // catch try tähän error handle formiin ja toast kun success!
       })
       .catch((error) => {
         toast.error('Rekisteröiminen epäonnistui. Yritä myöhemmin uudelleen.', {
           id: 'signuperror',
         });
-        console.error('error: ', error);
+        throw new Error(error);
       });
   };
 
