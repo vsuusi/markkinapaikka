@@ -1,5 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  FaUser, FaPhone, FaEnvelope, FaRegClock,
+} from 'react-icons/fa';
 import { AuthContext } from '../context/authcontext';
 import Listings from './Listings.jsx';
 import { getUserById } from '../../api/users.js';
@@ -53,11 +56,23 @@ function Profile() {
         </div>
         <div className="info-right">
           <p>
+            <FaUser className="login-icon" />
+            {' '}
             {userData.name}
           </p>
-          <p>{userData.email}</p>
-          <p>{userData.phone}</p>
           <p>
+            <FaEnvelope className="login-icon" />
+            {' '}
+            {userData.email}
+          </p>
+          <p>
+            <FaPhone className="login-icon" />
+            {' '}
+            {userData.phone}
+          </p>
+          <p>
+            <FaRegClock className="login-icon" />
+            {' '}
             Markkinapaikalla
             {' '}
             {dateParser(userData.date_created)}

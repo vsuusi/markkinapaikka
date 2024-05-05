@@ -79,9 +79,6 @@ function ListingModal({ userid, item, onClose }) {
           </p>
           {userid && (
             <div className="modal-edit-buttons">
-              <button>
-                Muokkaa
-              </button>
               <button onClick={handleItemRemoval}>
                 Poista
               </button>

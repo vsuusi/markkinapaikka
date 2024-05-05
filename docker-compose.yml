@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.1'
 services:
   db:
     image: mysql
@@ -10,12 +10,10 @@ services:
     ports:
       - '3306:3306'
     volumes:
-        - ./db/init.prod.sql:/docker-entrypoint-initdb.d/init.prod.sql
-        - mysql-data:/var/lib/mysql
+        - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  app:
-    build: .
-    image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+  server:
+    build: .server
     restart: always
     env_file:
       - .env
@@ -23,6 +21,3 @@ services:
       - 3000:3000
     depends_on:
       - db
-
-volumes:
-  mysql-data:
