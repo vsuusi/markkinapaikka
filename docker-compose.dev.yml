@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: markkinapaikka_password
+      MYSQL_DATABASE: 'markkinapaikka_db'
+    ports:
+      - '3306:3306'
+    volumes:
+        - ./server/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  server:
+    build: ./server
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - db

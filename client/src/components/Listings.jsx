@@ -45,7 +45,7 @@ function Listings({ userid }) {
       <SearchBar onSearch={handleSearch} />
       <div className="listing-container">
         {filteredItems.length === 0 ? (
-          <div className="no-items-found">No items found.</div>
+          <div className="no-items-found">Ilmoituksia ei löytnyt.</div>
         ) : (
           <ul className="listing-list">
             {[...filteredItems].reverse().map((item) => (

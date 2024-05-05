@@ -28,6 +28,9 @@ function LoginForm() {
       toast.success('Kirjauduttu sisään!');
       navigate('/');
     } catch (err) {
+      toast.error('Kirjautuminen epäonnistui. Yritä myöhemmin uudelleen.', {
+        id: 'loginerror',
+      });
       console.log(err);
     }
 
@@ -51,7 +54,7 @@ function LoginForm() {
           <button type="submit">Kirjaudu sisään</button>
 
           <div className="login-forgot">
-            <a href="/">Salasana unohtunut?</a>
+            <a href="/login">Salasana unohtunut?</a>
           </div>
 
           <div className="login-register">

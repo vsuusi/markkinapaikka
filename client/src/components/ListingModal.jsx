@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../context/authcontext';
 import { deleteItem } from '../../api/items';
 import noPhoto from '../../resources/nophoto.jpg';
@@ -35,6 +36,7 @@ function ListingModal({ userid, item, onClose }) {
     };
     try {
       await deleteItem(request);
+      toast.success('Ilmoitus poistettu!');
       handleClose();
     } catch (err) {
       console.error('error deleting item: ', err);
