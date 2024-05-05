@@ -1,6 +1,8 @@
+import 'dotenv/config';
+
 /* eslint-disable camelcase */
 export const getItems = async () => {
-  const response = await fetch('/api/items', {
+  const response = await fetch(`${process.env.LOCAL_URL}/api/items`, {
     method: 'GET',
   });
   return response.json();
@@ -9,8 +11,7 @@ export const getItems = async () => {
 export const addItem = async ({
   user_id, title, description, price, location, image_url, token,
 }) => {
-  console.log(title, description, price, location, image_url, user_id, token);
-  const response = await fetch('/api/items', {
+  const response = await fetch(`${process.env.LOCAL_URL}/api/items`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -30,7 +31,7 @@ export const addItem = async ({
 };
 
 export const deleteItem = async ({ id, token }) => {
-  const response = await fetch(`/api/items/${id}`, {
+  const response = await fetch(`${process.env.LOCAL_URL}/api/items/${id}`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',

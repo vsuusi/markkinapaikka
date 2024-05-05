@@ -1,7 +1,6 @@
 export const signUpUser = async ({
   email, name, password, phone,
 }) => {
-  console.log('api/users/signup: ', email, name, password, phone);
   const res = await fetch(
     '/api/users/signup',
     {
