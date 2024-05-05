@@ -41,6 +41,9 @@ function SignupFrom() {
         // catch try tähän error handle formiin ja toast kun success!
       })
       .catch((error) => {
+        toast.error('Rekisteröiminen epäonnistui. Yritä myöhemmin uudelleen.', {
+          id: 'signuperror',
+        });
         console.error('error: ', error);
       });
   };

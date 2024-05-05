@@ -7,11 +7,7 @@ import usersRouter from './routes/users.js';
 const app = express();
 
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'http://localhost:8088',
-    'http://localhost:8081',
-  ],
+  origin: '*',
 }));
 app.use(express.json());
 
