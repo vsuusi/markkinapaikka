@@ -28,19 +28,18 @@ function SignupFrom() {
       phone: phoneRef.current.value,
     };
 
-    signUpUser(formData)
-      .then((signUpResponse) => loginUser(signUpResponse))
-      .then((loginResponse) => {
-        auth.login(loginResponse.id, loginResponse.token);
-        toast.success('Rekisteröinti onnistui!');
-        navigate('/');
-      })
-      .catch((error) => {
-        toast.error('Rekisteröiminen epäonnistui. Yritä myöhemmin uudelleen.', {
-          id: 'signuperror',
-        });
-        throw new Error('signup + login fail', error);
+    try {
+      const signUpResponse = await signUpUser(formData);
+      const loginResponse = await loginUser(signUpResponse);
+      auth.login(loginResponse.id, loginResponse.token);
+      toast.success('Rekisteröinti onnistui!');
+      navigate('/');
+    } catch (err) {
+      toast.error('Rekisteröiminen epäonnistui. Yritä myöhemmin uudelleen.', {
+        id: 'signuperror',
       });
+      throw new Error('signup + login fail', err);
+    }
   };
 
   return (

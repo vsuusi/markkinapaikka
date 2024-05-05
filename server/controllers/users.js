@@ -12,7 +12,6 @@ const getUserById = async (req, res) => {
 };
 
 const signUpUser = async (req, res) => {
-  // TODO: MISSING VALIDATION
   const {
     name, email, password, phone, id,
   } = req.body;
@@ -57,6 +56,7 @@ const signUpUser = async (req, res) => {
       email: newUser.email,
       token,
     });
+    console.log('user created!');
   } catch (err) {
     return res.status(500).send({ error: err.message });
   }
