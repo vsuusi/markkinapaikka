@@ -16,7 +16,14 @@
     border: none;
     background: none;
     cursor: pointer;
+    color: black;
     &:hover {
         color: gray;
     }
+}
+
+.footer-link:hover,
+.footer-link:active {
+    color: inherit !important;
+    text-decoration: none !important;
 }
