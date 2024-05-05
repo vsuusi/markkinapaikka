@@ -74,6 +74,7 @@ POST /api/users/login
 - upload image from device
 - data validation
 - error handling improvements
+- improve user feedback on forms
 
 ## Project summary
 
